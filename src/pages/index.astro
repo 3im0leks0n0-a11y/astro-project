@@ -1,11 +1,302 @@
 ---
-import Layout from "../layout/Layout.astro";
-import Button from "../components/button.astro";
+import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<h1 class="color-red-500 text-3xl font-bold underline">
-		Hello world!
-	</h1>
-	<Button />
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm px-6 md:px-16 py-4 flex items-center justify-between">
+    <a href="/" class="text-white font-bold text-xl tracking-tight">carty<span class="text-yellow-400">.</span></a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-gray-300">
+      <a href="#features" class="hover:text-white transition">Features</a>
+      <a href="#pricing" class="hover:text-white transition">Pricing</a>
+      <a href="#about" class="hover:text-white transition">About Us</a>
+      <a href="#tips" class="hover:text-white transition">Tips</a>
+    </div>
+    <a href="#" class="bg-white text-black text-sm font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition">Get Started</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="bg-black text-white min-h-screen pt-24 px-6 md:px-16 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
+    <div class="flex-1 z-10 max-w-xl">
+      <h1 class="text-5xl md:text-6xl font-black leading-tight mb-6">
+        Digitize your<br />financial
+      </h1>
+      <p class="text-gray-400 text-sm mb-8 max-w-xs">
+        Money should be easy. It's time to say goodbye to banks & financial services companies that don't work for you.
+      </p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="bg-yellow-400 text-black font-bold px-6 py-3 rounded-full hover:bg-yellow-300 transition text-sm">Digitize Now</a>
+        <button class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:border-white transition">
+          <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="flex items-center gap-2 mt-8 text-xs text-gray-500">
+        <span class="text-yellow-400">🏆</span>
+        <span>#322 The world's most digital banks</span>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="flex-1 relative h-96 md:h-auto flex items-center justify-center z-10">
+      <!-- Card 1 -->
+      <div class="absolute w-52 h-32 rounded-2xl rotate-[-15deg] top-0 left-4 shadow-2xl overflow-hidden"
+           style="background: linear-gradient(135deg, #a855f7, #6366f1, #3b82f6);">
+        <div class="p-4 h-full flex flex-col justify-between">
+          <p class="text-white/70 text-xs font-semibold">carty</p>
+          <div>
+            <p class="text-white text-xs opacity-60">•••• •••• •••• 4521</p>
+          </div>
+        </div>
+        <div class="absolute right-3 bottom-3 w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+          <div class="w-5 h-5 rounded-full border-2 border-white/60"></div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="absolute w-56 h-32 rounded-2xl rotate-[8deg] top-16 right-0 shadow-2xl overflow-hidden"
+           style="background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899);">
+        <div class="p-4 h-full flex flex-col justify-between">
+          <p class="text-white/70 text-xs font-semibold">carty</p>
+          <p class="text-white text-xs opacity-60">•••• •••• •••• 8834</p>
+        </div>
+        <div class="absolute right-3 bottom-3 flex">
+          <div class="w-6 h-6 rounded-full bg-red-500/80"></div>
+          <div class="w-6 h-6 rounded-full bg-yellow-400/80 -ml-2"></div>
+        </div>
+      </div>
+      <!-- Card 3 (center) -->
+      <div class="relative w-60 h-36 rounded-2xl shadow-2xl overflow-hidden mt-16"
+           style="background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6);">
+        <div class="p-5 h-full flex flex-col justify-between">
+          <p class="text-white font-bold text-sm">carty</p>
+          <div>
+            <p class="text-white/70 text-xs mb-1">•••• •••• •••• 1122</p>
+            <p class="text-white/50 text-xs">VALID THRU 12/28</p>
+          </div>
+        </div>
+        <div class="absolute right-4 bottom-4 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
+        </div>
+      </div>
+      <!-- Stats badge -->
+      <div class="absolute bottom-4 right-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-3 flex items-center gap-3">
+        <div class="flex -space-x-2">
+          <div class="w-7 h-7 rounded-full bg-pink-400 border-2 border-black"></div>
+          <div class="w-7 h-7 rounded-full bg-blue-400 border-2 border-black"></div>
+          <div class="w-7 h-7 rounded-full bg-yellow-400 border-2 border-black"></div>
+        </div>
+        <div>
+          <p class="text-white font-bold text-sm">12M</p>
+          <p class="text-gray-400 text-xs">Active users</p>
+        </div>
+      </div>
+      <!-- Explore badge -->
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-20 rounded-full border-2 border-dashed border-white/30 flex items-center justify-center">
+        <span class="text-white/40 text-[9px] font-bold tracking-widest rotate-45">EXPLORE MORE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="bg-white px-6 md:px-16 py-24">
+    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Features</p>
+    <div class="flex flex-col md:flex-row gap-12 items-start">
+      <div class="flex-1 max-w-sm">
+        <h2 class="text-4xl font-black text-gray-900 leading-tight mb-6">Best features provided by carty</h2>
+        <p class="text-gray-500 text-sm leading-relaxed mb-8">
+          Carty is more of a mindset than technology or industry. Our product is designed by industry veterans to solve these problems. It will save you time, money, and heartache.
+        </p>
+        <div class="flex gap-3">
+          <a href="#" class="bg-black text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gray-800 transition">Get Started</a>
+          <a href="#" class="text-black text-sm font-semibold px-5 py-2.5 rounded-full border border-gray-200 hover:bg-gray-50 transition">Learn More</a>
+        </div>
+      </div>
+      <div class="flex-1 grid grid-cols-2 gap-4">
+        <!-- Feature cards -->
+        <div class="col-span-2 bg-gray-50 rounded-2xl p-5">
+          <!-- Tracking mockup -->
+          <div class="bg-white rounded-xl p-4 shadow-sm">
+            <p class="text-xs font-semibold text-gray-400 mb-3">Tracking</p>
+            <div class="flex items-end gap-1 h-16">
+              <div class="flex-1 bg-purple-100 rounded" style="height:40%"></div>
+              <div class="flex-1 bg-purple-200 rounded" style="height:70%"></div>
+              <div class="flex-1 bg-purple-400 rounded" style="height:55%"></div>
+              <div class="flex-1 bg-purple-600 rounded" style="height:90%"></div>
+              <div class="flex-1 bg-purple-400 rounded" style="height:60%"></div>
+              <div class="flex-1 bg-purple-200 rounded" style="height:45%"></div>
+              <div class="flex-1 bg-purple-100 rounded" style="height:30%"></div>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">Track all your financial transactions</p>
+          </div>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-5">
+          <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <p class="font-bold text-sm mb-1">Protection</p>
+          <p class="text-gray-400 text-xs">Dataprtection guarantees</p>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-5">
+          <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+          </div>
+          <p class="font-bold text-sm mb-1">Flexibility</p>
+          <p class="text-gray-400 text-xs">Delivery through multiple channels</p>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-5">
+          <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <p class="font-bold text-sm mb-1">Easiness</p>
+          <p class="text-gray-400 text-xs">Feel free to transact anywhere, anytime</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="bg-gray-50 px-6 md:px-16 py-24">
+    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">About Us</p>
+    <div class="flex flex-col md:flex-row gap-12 items-center">
+      <div class="flex-1">
+        <h2 class="text-4xl font-black text-gray-900 leading-tight">Get to know more about carty</h2>
+      </div>
+      <div class="flex-1">
+        <p class="text-gray-500 text-sm leading-relaxed">
+          We are customer-focused digital bank that provides complete financial solutions to meet your entire financial needs.
+        </p>
+      </div>
+    </div>
+    <!-- Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+      <div class="text-center md:text-left">
+        <p class="text-5xl font-black text-gray-200">243K</p>
+        <p class="text-gray-500 text-sm mt-2">Carty's users from all over the globe</p>
+      </div>
+      <div class="text-center md:text-left">
+        <p class="text-5xl font-black text-gray-200">489M</p>
+        <p class="text-gray-500 text-sm mt-2">Carty's revenue in 2022 in the first quarter</p>
+      </div>
+      <div class="text-center md:text-left">
+        <p class="text-5xl font-black text-gray-200">267%</p>
+        <p class="text-gray-500 text-sm mt-2">Carty's investment growth in 2022</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="bg-black mx-6 md:mx-16 my-16 rounded-3xl px-8 md:px-16 py-16 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+    <div class="relative z-10">
+      <h2 class="text-3xl md:text-4xl font-black text-white leading-tight max-w-sm">
+        Meet your banking future starting from now with Carty
+      </h2>
+      <a href="#" class="mt-8 inline-block bg-yellow-400 text-black font-bold px-6 py-3 rounded-full hover:bg-yellow-300 transition text-sm">Try Carty Now</a>
+    </div>
+    <!-- Hand + card illustration -->
+    <div class="relative z-10 flex items-center justify-center">
+      <div class="relative">
+        <!-- Card floating -->
+        <div class="w-48 h-28 rounded-2xl shadow-2xl rotate-[-10deg] absolute -top-8 right-0"
+             style="background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899);">
+          <div class="p-4">
+            <p class="text-white/70 text-xs font-bold">carty</p>
+          </div>
+          <div class="absolute right-3 bottom-3 flex">
+            <div class="w-5 h-5 rounded-full bg-red-500/80"></div>
+            <div class="w-5 h-5 rounded-full bg-yellow-400/80 -ml-1.5"></div>
+          </div>
+        </div>
+        <!-- Stars -->
+        <div class="text-yellow-400 text-2xl absolute -top-12 left-0">✦</div>
+        <div class="text-yellow-400 text-sm absolute top-0 right-16">✦</div>
+        <!-- Hand placeholder -->
+        <div class="w-48 h-48 bg-white/10 rounded-full flex items-center justify-center mt-8">
+          <div class="w-24 h-32 bg-white/20 rounded-t-full rounded-b-lg"></div>
+        </div>
+      </div>
+    </div>
+    <!-- BG decoration -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute w-96 h-96 rounded-full bg-purple-500 -top-20 -right-20 blur-3xl"></div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section id="partners" class="bg-white px-6 md:px-16 py-24">
+    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Partners</p>
+    <div class="flex flex-col md:flex-row gap-12 items-start">
+      <div class="flex-1 max-w-xs">
+        <h2 class="text-4xl font-black text-gray-900 leading-tight">Meet most carty trusted partners</h2>
+      </div>
+      <div class="flex-1">
+        <p class="text-gray-500 text-sm leading-relaxed mb-12">
+          Carty adaptable to meet specific process requirements of global companies. Carty supports numerous local bank channel.
+        </p>
+        <div class="grid grid-cols-3 gap-6">
+          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
+            <span class="font-black text-gray-600 text-lg">OVO</span>
+          </div>
+          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
+            <span class="font-semibold text-gray-600 text-sm flex items-center gap-1">🍎 Pay</span>
+          </div>
+          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
+            <span class="font-black text-blue-700 text-xl italic">VISA</span>
+          </div>
+          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
+            <span class="font-bold text-green-600 text-sm">wise</span>
+          </div>
+          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
+            <span class="font-semibold text-gray-600 text-xs">◎Payoneer</span>
+          </div>
+          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
+            <span class="font-bold text-gray-600 text-sm">G Pay</span>
+          </div>
+          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
+            <span class="font-bold text-indigo-600 text-sm">stripe</span>
+          </div>
+          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
+            <span class="font-black text-gray-500 text-xs tracking-widest">NETELLER</span>
+          </div>
+          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
+            <span class="font-bold text-red-500 text-sm">Alipay</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="tips" class="bg-gray-50 px-6 md:px-16 py-24">
+    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Strategy</p>
+    <div class="flex flex-col md:flex-row gap-16 items-center">
+      <div class="flex-1 max-w-xs">
+        <h2 class="text-4xl font-black text-gray-900 leading-tight">Let's learn how carty work</h2>
+      </div>
+      <div class="flex-1">
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Your journey is seamless, safe and secure. No need to register or download apps. No need to enter card details.
+        </p>
+      </div>
+    </div>
+    <!-- Big logo -->
+    <div class="flex items-center justify-center py-24">
+      <h2 class="text-8xl md:text-9xl font-black bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">Carty</h2>
+    </div>
+    <p class="text-center text-gray-400 text-sm">We are Carty, provide A seamless digital bank.</p>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="bg-black px-6 md:px-16 py-24 text-center">
+    <h2 class="text-4xl md:text-5xl font-black text-white mb-8">Connect your finances<br />with Carty</h2>
+    <a href="#" class="inline-block bg-yellow-400 text-black font-bold px-8 py-4 rounded-full hover:bg-yellow-300 transition text-sm">Join Carty Now</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black border-t border-white/10 px-6 md:px-16 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-8 text-xs text-gray-500">
+      <span>Terms & Agreements</span>
+      <span>Privacy Policy</span>
+    </div>
+    <p class="text-white font-bold text-lg">carty<span class="text-yellow-400">.</span></p>
+    <p class="text-xs text-gray-500">©2023 Carty. All Rights Reserved</p>
+  </footer>
 </Layout>
