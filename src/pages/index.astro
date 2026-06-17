@@ -3,300 +3,856 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <!-- NAV -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm px-6 md:px-16 py-4 flex items-center justify-between">
-    <a href="/" class="text-white font-bold text-xl tracking-tight">carty<span class="text-yellow-400">.</span></a>
-    <div class="hidden md:flex items-center gap-8 text-sm text-gray-300">
-      <a href="#features" class="hover:text-white transition">Features</a>
-      <a href="#pricing" class="hover:text-white transition">Pricing</a>
-      <a href="#about" class="hover:text-white transition">About Us</a>
-      <a href="#tips" class="hover:text-white transition">Tips</a>
-    </div>
-    <a href="#" class="bg-white text-black text-sm font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition">Get Started</a>
-  </nav>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
-  <!-- HERO -->
-  <section class="bg-black text-white min-h-screen pt-24 px-6 md:px-16 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
-    <div class="flex-1 z-10 max-w-xl">
-      <h1 class="text-5xl md:text-6xl font-black leading-tight mb-6">
-        Digitize your<br />financial
-      </h1>
-      <p class="text-gray-400 text-sm mb-8 max-w-xs">
-        Money should be easy. It's time to say goodbye to banks & financial services companies that don't work for you.
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #fafaf8;
+    --gray-light: #e8e8e4;
+    --gray-mid: #9a9a94;
+    --gray-dark: #3a3a36;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', 'Helvetica Neue', sans-serif;
+    --rule: 1px solid #0a0a0a;
+    --rule-light: 1px solid #e8e8e4;
+  }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 2rem;
+    height: 44px;
+  }
+  .nav-left { display: flex; gap: 2rem; }
+  .nav-center { font-family: var(--serif); font-size: 1.1rem; letter-spacing: 0.05em; }
+  .nav-right { display: flex; gap: 2rem; justify-content: flex-end; }
+  nav a {
+    font-size: 11px;
+    text-decoration: none;
+    color: var(--black);
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--gray-mid); }
+
+  /* ── HERO ── */
+  .hero {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: var(--rule);
+    min-height: 90vh;
+  }
+  .hero-left {
+    border-right: var(--rule);
+    display: flex;
+    align-items: flex-end;
+    padding: 3rem;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  .book-cover {
+    background: var(--black);
+    border: 2px solid #2a2a2a;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 3/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.4s cubic-bezier(.25,.46,.45,.94);
+    box-shadow: 8px 8px 0 #1a1a1a, 16px 16px 0 #111;
+  }
+  .book-cover:hover { transform: translateY(-6px) rotate(-1deg); }
+  .book-cover h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--white);
+    line-height: 1.15;
+    font-weight: 400;
+  }
+  .book-author {
+    font-size: 10px;
+    color: var(--gray-mid);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .book-cover-line {
+    position: absolute;
+    bottom: 3.5rem;
+    left: 2rem; right: 2rem;
+    height: 1px;
+    background: #2a2a2a;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem;
+  }
+  .hero-right-top h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    font-weight: 400;
+    max-width: 480px;
+    margin-bottom: 2rem;
+  }
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 0.5rem;
+  }
+  .hero-desc {
+    font-size: 12px;
+    color: var(--gray-dark);
+    max-width: 340px;
+    line-height: 1.7;
+  }
+  .hero-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem;
+    border-top: var(--rule-light);
+  }
+  .preorder-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: var(--rule);
+    padding: 0.6rem 1.4rem;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--black);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: var(--sans);
+  }
+  .preorder-btn:hover { background: var(--black); color: var(--white); }
+  .preorder-btn .arrow { transition: transform 0.2s; }
+  .preorder-btn:hover .arrow { transform: translateX(4px); }
+  .square-marker {
+    width: 10px; height: 10px;
+    background: var(--black);
+    flex-shrink: 0;
+  }
+
+  /* ── VISUAL MASTERY ── */
+  .mastery {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: var(--rule);
+  }
+  .mastery-label {
+    border-right: var(--rule);
+    padding: 2.5rem 2rem;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .mastery-content {
+    padding: 0;
+  }
+  .mastery-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: var(--rule);
+  }
+  .mastery-col-label {
+    padding: 1rem 2rem;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+  }
+  .mastery-col-label:first-child { border-right: var(--rule); }
+  .mastery-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: var(--rule-light);
+  }
+  .mastery-row:last-child { border-bottom: none; }
+  .mastery-cell {
+    padding: 1.5rem 2rem;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--gray-dark);
+  }
+  .mastery-cell:first-child {
+    border-right: var(--rule);
+    color: var(--black);
+    font-weight: 400;
+  }
+
+  /* ── GLIMPSE ── */
+  .glimpse {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: var(--rule);
+  }
+  .glimpse-label {
+    border-right: var(--rule);
+    padding: 2.5rem 2rem;
+  }
+  .glimpse-label h3 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .glimpse-label p {
+    font-size: 11px;
+    color: var(--gray-mid);
+    margin-top: 1.5rem;
+    line-height: 1.7;
+  }
+  .glimpse-chapters {
+    padding: 0;
+  }
+  .chapter-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border-bottom: var(--rule-light);
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .chapter-row:last-child { border-bottom: none; }
+  .chapter-row:hover { background: #f4f4f0; }
+  .chapter-num {
+    padding: 1.8rem 2rem;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gray-mid);
+    border-right: var(--rule-light);
+    display: flex;
+    align-items: flex-start;
+    padding-top: 1.8rem;
+  }
+  .chapter-title {
+    padding: 1.8rem 2rem;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.35;
+  }
+  .chapter-title em {
+    font-style: italic;
+  }
+
+  /* ── AUTHOR SPREAD ── */
+  .author-spread {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: var(--rule);
+    min-height: 60vh;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  .author-img-col {
+    position: relative;
+    overflow: hidden;
+  }
+  .author-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 40%, #0a0a0a 100%);
+    position: relative;
+  }
+  /* grainy texture overlay */
+  .author-img-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+  }
+  .author-monogram {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--serif);
+    font-size: clamp(5rem, 12vw, 10rem);
+    color: var(--white);
+    opacity: 0.9;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+  .author-text-col {
+    border-left: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem;
+    gap: 2rem;
+  }
+  .author-text-col p {
+    font-size: 12px;
+    color: #9a9a94;
+    line-height: 1.8;
+    max-width: 320px;
+  }
+  .author-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2a2a2a;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #666660;
+    margin-top: 0.3rem;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote-section {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: var(--rule);
+    align-items: start;
+  }
+  .pull-quote-marker {
+    border-right: var(--rule);
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .pull-quote-marker p {
+    font-size: 11px;
+    color: var(--gray-mid);
+    line-height: 1.6;
+  }
+  .pull-quote-main {
+    padding: 3rem;
+  }
+  .pull-quote-main blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-style: italic;
+    max-width: 700px;
+    margin-bottom: 3rem;
+  }
+  .pull-quote-sub {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding-top: 2rem;
+    border-top: var(--rule-light);
+  }
+  .pull-quote-sub-text {
+    font-size: 12px;
+    color: var(--gray-dark);
+    line-height: 1.7;
+  }
+  .pull-quote-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .pull-stat {}
+  .pull-stat-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+  .pull-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-top: 0.25rem;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    border-bottom: var(--rule);
+    padding: 4rem 3rem;
+  }
+  .testimonials-header {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 400;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: var(--rule);
+  }
+  .testimonial-card {
+    padding: 2rem;
+    border-right: var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    transition: background 0.2s;
+  }
+  .testimonial-card:last-child { border-right: none; }
+  .testimonial-card:hover { background: #f4f4f0; }
+  .quote-mark {
+    font-family: var(--serif);
+    font-size: 3rem;
+    color: var(--gray-light);
+    line-height: 1;
+  }
+  .testimonial-text {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--gray-dark);
+    flex: 1;
+  }
+  .testimonial-meta {
+    border-top: var(--rule-light);
+    padding-top: 1rem;
+  }
+  .testimonial-name {
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .testimonial-role {
+    font-size: 10px;
+    color: var(--gray-mid);
+    margin-top: 0.2rem;
+  }
+  .testimonial-num {
+    font-size: 10px;
+    color: var(--gray-light);
+    margin-top: 0.5rem;
+  }
+
+  /* ── CTA FOOTER ── */
+  .cta-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: var(--rule);
+  }
+  .cta-left {
+    padding: 5rem 3rem;
+    border-right: var(--rule);
+  }
+  .cta-left h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+  .cta-left h2 em {
+    font-style: italic;
+  }
+  .cta-left .cta-sub {
+    font-size: 11px;
+    color: var(--gray-mid);
+    letter-spacing: 0.05em;
+  }
+  .cta-right {
+    padding: 5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cta-right p {
+    font-size: 12px;
+    color: var(--gray-dark);
+    line-height: 1.7;
+    max-width: 320px;
+  }
+  .cta-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem 2rem;
+    margin-top: 2rem;
+  }
+  .cta-links a {
+    font-size: 11px;
+    color: var(--black);
+    text-decoration: none;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .cta-links a:hover { border-color: var(--black); }
+
+  /* ── NAMEPLATE ── */
+  .nameplate {
+    padding: 2rem 3rem;
+    border-bottom: var(--rule);
+    overflow: hidden;
+  }
+  .nameplate-name {
+    font-family: var(--serif);
+    font-size: clamp(4rem, 15vw, 12rem);
+    font-weight: 400;
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  /* ── MICRO INTERACTIONS ── */
+  .chapter-row {
+    position: relative;
+  }
+  .chapter-row::after {
+    content: '→';
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%) translateX(-8px);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    font-size: 1rem;
+  }
+  .chapter-row:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+    * { transition: none !important; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-left, .nav-right { display: none; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { border-right: none; border-bottom: var(--rule); padding: 2rem; min-height: 50vw; }
+    .book-cover { max-width: 200px; }
+    .hero-right { padding: 2rem; }
+
+    .mastery { grid-template-columns: 1fr; }
+    .mastery-label { border-right: none; border-bottom: var(--rule); }
+    .mastery-header, .mastery-row { grid-template-columns: 1fr; }
+    .mastery-cell:first-child { border-right: none; border-bottom: var(--rule-light); }
+
+    .glimpse { grid-template-columns: 1fr; }
+    .glimpse-label { border-right: none; border-bottom: var(--rule); }
+    .chapter-row { grid-template-columns: 60px 1fr; }
+
+    .author-spread { grid-template-columns: 1fr; }
+    .author-img-col { min-height: 40vw; }
+    .author-text-col { border-left: none; border-top: 1px solid #2a2a2a; }
+
+    .pull-quote-section { grid-template-columns: 1fr; }
+    .pull-quote-marker { border-right: none; border-bottom: var(--rule); }
+    .pull-quote-sub { grid-template-columns: 1fr; }
+
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonial-card { border-right: none; border-bottom: var(--rule); }
+    .testimonial-card:last-child { border-bottom: none; }
+
+    .cta-section { grid-template-columns: 1fr; }
+    .cta-left { border-right: none; border-bottom: var(--rule); padding: 3rem 2rem; }
+    .cta-right { padding: 3rem 2rem; }
+    .cta-links { grid-template-columns: 1fr 1fr; }
+
+    .nameplate { padding: 1.5rem 2rem; }
+  }
+</style>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <a href="#">home</a>
+    <a href="#">about</a>
+    <a href="#">artwork</a>
+  </div>
+  <div class="nav-center">JH</div>
+  <div class="nav-right">
+    <a href="#">challenge</a>
+    <a href="#">approach</a>
+    <a href="#">contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="book-cover">
+      <div>
+        <h1>Unseen Connections:<br/>The Art of Creating Visual Stories</h1>
+      </div>
+      <div class="book-cover-line"></div>
+      <p class="book-author">JAMES HOLT</p>
+    </div>
+  </div>
+  <div class="hero-right reveal">
+    <div class="hero-right-top">
+      <p class="hero-eyebrow">The Thinking Behind Design</p>
+      <h2>Unseen Connections : The Art of Creating Visual Stories</h2>
+      <p class="hero-desc">
+        Unseen Connections explores the thinking behind impactful design — uncovering how clarity, purpose, and considered decisions create lasting meaning for an audience.
       </p>
-      <div class="flex items-center gap-4">
-        <a href="#" class="bg-yellow-400 text-black font-bold px-6 py-3 rounded-full hover:bg-yellow-300 transition text-sm">Digitize Now</a>
-        <button class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:border-white transition">
-          <svg class="w-4 h-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-      </div>
-      <div class="flex items-center gap-2 mt-8 text-xs text-gray-500">
-        <span class="text-yellow-400">🏆</span>
-        <span>#322 The world's most digital banks</span>
-      </div>
     </div>
+    <div class="hero-bottom">
+      <a href="#" class="preorder-btn">
+        PRE-ORDER NOW <span class="arrow">→</span>
+      </a>
+      <div class="square-marker"></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Cards -->
-    <div class="flex-1 relative h-96 md:h-auto flex items-center justify-center z-10">
-      <!-- Card 1 -->
-      <div class="absolute w-52 h-32 rounded-2xl rotate-[-15deg] top-0 left-4 shadow-2xl overflow-hidden"
-           style="background: linear-gradient(135deg, #a855f7, #6366f1, #3b82f6);">
-        <div class="p-4 h-full flex flex-col justify-between">
-          <p class="text-white/70 text-xs font-semibold">carty</p>
-          <div>
-            <p class="text-white text-xs opacity-60">•••• •••• •••• 4521</p>
-          </div>
-        </div>
-        <div class="absolute right-3 bottom-3 w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-          <div class="w-5 h-5 rounded-full border-2 border-white/60"></div>
-        </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="absolute w-56 h-32 rounded-2xl rotate-[8deg] top-16 right-0 shadow-2xl overflow-hidden"
-           style="background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899);">
-        <div class="p-4 h-full flex flex-col justify-between">
-          <p class="text-white/70 text-xs font-semibold">carty</p>
-          <p class="text-white text-xs opacity-60">•••• •••• •••• 8834</p>
-        </div>
-        <div class="absolute right-3 bottom-3 flex">
-          <div class="w-6 h-6 rounded-full bg-red-500/80"></div>
-          <div class="w-6 h-6 rounded-full bg-yellow-400/80 -ml-2"></div>
-        </div>
-      </div>
-      <!-- Card 3 (center) -->
-      <div class="relative w-60 h-36 rounded-2xl shadow-2xl overflow-hidden mt-16"
-           style="background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6);">
-        <div class="p-5 h-full flex flex-col justify-between">
-          <p class="text-white font-bold text-sm">carty</p>
-          <div>
-            <p class="text-white/70 text-xs mb-1">•••• •••• •••• 1122</p>
-            <p class="text-white/50 text-xs">VALID THRU 12/28</p>
-          </div>
-        </div>
-        <div class="absolute right-4 bottom-4 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
-        </div>
-      </div>
-      <!-- Stats badge -->
-      <div class="absolute bottom-4 right-0 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-3 flex items-center gap-3">
-        <div class="flex -space-x-2">
-          <div class="w-7 h-7 rounded-full bg-pink-400 border-2 border-black"></div>
-          <div class="w-7 h-7 rounded-full bg-blue-400 border-2 border-black"></div>
-          <div class="w-7 h-7 rounded-full bg-yellow-400 border-2 border-black"></div>
-        </div>
-        <div>
-          <p class="text-white font-bold text-sm">12M</p>
-          <p class="text-gray-400 text-xs">Active users</p>
-        </div>
-      </div>
-      <!-- Explore badge -->
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-20 rounded-full border-2 border-dashed border-white/30 flex items-center justify-center">
-        <span class="text-white/40 text-[9px] font-bold tracking-widest rotate-45">EXPLORE MORE</span>
-      </div>
+<!-- VISUAL MASTERY -->
+<section class="mastery reveal">
+  <div class="mastery-label">A Guide to Visual Mastery</div>
+  <div class="mastery-content">
+    <div class="mastery-header">
+      <div class="mastery-col-label">FRAMEWORK</div>
+      <div class="mastery-col-label">INSIGHT</div>
     </div>
-  </section>
+    <div class="mastery-row">
+      <div class="mastery-cell">How to craft a memorable brand story through design</div>
+      <div class="mastery-cell">Craft memorable brand stories through design, understanding storytelling's role in audience connection.</div>
+    </div>
+    <div class="mastery-row">
+      <div class="mastery-cell">The art of creative direction and why it matters</div>
+      <div class="mastery-cell">Creative direction shapes not only visuals, but also clarity, perception, and brand frameworks every decision.</div>
+    </div>
+    <div class="mastery-row">
+      <div class="mastery-cell">The role of simplicity and boldness in impactful visuals</div>
+      <div class="mastery-cell">Explore how simplicity and boldness work together to create clarity and make brand visuals every decision.</div>
+    </div>
+    <div class="mastery-row">
+      <div class="mastery-cell">How design choices create lasting emotional connections with audiences</div>
+      <div class="mastery-cell">Design decisions influence emotion, creating design connections that stay with audiences to shape their first impression.</div>
+    </div>
+  </div>
+</section>
 
-  <!-- FEATURES -->
-  <section id="features" class="bg-white px-6 md:px-16 py-24">
-    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Features</p>
-    <div class="flex flex-col md:flex-row gap-12 items-start">
-      <div class="flex-1 max-w-sm">
-        <h2 class="text-4xl font-black text-gray-900 leading-tight mb-6">Best features provided by carty</h2>
-        <p class="text-gray-500 text-sm leading-relaxed mb-8">
-          Carty is more of a mindset than technology or industry. Our product is designed by industry veterans to solve these problems. It will save you time, money, and heartache.
-        </p>
-        <div class="flex gap-3">
-          <a href="#" class="bg-black text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gray-800 transition">Get Started</a>
-          <a href="#" class="text-black text-sm font-semibold px-5 py-2.5 rounded-full border border-gray-200 hover:bg-gray-50 transition">Learn More</a>
-        </div>
-      </div>
-      <div class="flex-1 grid grid-cols-2 gap-4">
-        <!-- Feature cards -->
-        <div class="col-span-2 bg-gray-50 rounded-2xl p-5">
-          <!-- Tracking mockup -->
-          <div class="bg-white rounded-xl p-4 shadow-sm">
-            <p class="text-xs font-semibold text-gray-400 mb-3">Tracking</p>
-            <div class="flex items-end gap-1 h-16">
-              <div class="flex-1 bg-purple-100 rounded" style="height:40%"></div>
-              <div class="flex-1 bg-purple-200 rounded" style="height:70%"></div>
-              <div class="flex-1 bg-purple-400 rounded" style="height:55%"></div>
-              <div class="flex-1 bg-purple-600 rounded" style="height:90%"></div>
-              <div class="flex-1 bg-purple-400 rounded" style="height:60%"></div>
-              <div class="flex-1 bg-purple-200 rounded" style="height:45%"></div>
-              <div class="flex-1 bg-purple-100 rounded" style="height:30%"></div>
-            </div>
-            <p class="text-xs text-gray-400 mt-2">Track all your financial transactions</p>
-          </div>
-        </div>
-        <div class="bg-gray-50 rounded-2xl p-5">
-          <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center mb-3">
-            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          </div>
-          <p class="font-bold text-sm mb-1">Protection</p>
-          <p class="text-gray-400 text-xs">Dataprtection guarantees</p>
-        </div>
-        <div class="bg-gray-50 rounded-2xl p-5">
-          <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center mb-3">
-            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
-          </div>
-          <p class="font-bold text-sm mb-1">Flexibility</p>
-          <p class="text-gray-400 text-xs">Delivery through multiple channels</p>
-        </div>
-        <div class="bg-gray-50 rounded-2xl p-5">
-          <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center mb-3">
-            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          </div>
-          <p class="font-bold text-sm mb-1">Easiness</p>
-          <p class="text-gray-400 text-xs">Feel free to transact anywhere, anytime</p>
-        </div>
-      </div>
+<!-- GLIMPSE INTO PAGES -->
+<section class="glimpse">
+  <div class="glimpse-label reveal">
+    <h3>A Glimpse Into the Pages</h3>
+    <p>Unseen Connections offers a life-altering perspective on design — new ideas and the thinking behind relevant and clarity-reaching experiences.</p>
+  </div>
+  <div class="glimpse-chapters">
+    <div class="chapter-row reveal">
+      <span class="chapter-num">CHAPTER 1</span>
+      <div class="chapter-title">The Power of First Impressions — Creating memorable brand identities.</div>
     </div>
-  </section>
+    <div class="chapter-row reveal">
+      <span class="chapter-num">CHAPTER 2</span>
+      <div class="chapter-title">From Brief to Vision — How to turn a concept into an artistic direction.</div>
+    </div>
+    <div class="chapter-row reveal">
+      <span class="chapter-num">CHAPTER 3</span>
+      <div class="chapter-title">Leading the Charge — Managing creativity in teams.</div>
+    </div>
+    <div class="chapter-row reveal">
+      <span class="chapter-num">CHAPTER 4</span>
+      <div class="chapter-title">Designing for the Future — The evolving role of an Art Director in digital landscapes.</div>
+    </div>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about" class="bg-gray-50 px-6 md:px-16 py-24">
-    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">About Us</p>
-    <div class="flex flex-col md:flex-row gap-12 items-center">
-      <div class="flex-1">
-        <h2 class="text-4xl font-black text-gray-900 leading-tight">Get to know more about carty</h2>
+<!-- AUTHOR SPREAD -->
+<section class="author-spread reveal">
+  <div class="author-img-col">
+    <div class="author-img-placeholder">
+      <div class="author-monogram">JH</div>
+    </div>
+  </div>
+  <div class="author-text-col">
+    <p>Helping individuals get deeper forward-thinking clarity through this book, together with our supporting community design. No theories, just clear and practical experience on their brand new world opening.</p>
+    <p>Showing technical knowledge through comprehensive design. By focusing on making advanced design topics accessible, James Holt has built a global creative authority for forward-thinking leaders.</p>
+    <div class="author-stats">
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Global Projects</div>
       </div>
-      <div class="flex-1">
-        <p class="text-gray-500 text-sm leading-relaxed">
-          We are customer-focused digital bank that provides complete financial solutions to meet your entire financial needs.
-        </p>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Industries Shaped</div>
       </div>
     </div>
-    <!-- Stats -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-      <div class="text-center md:text-left">
-        <p class="text-5xl font-black text-gray-200">243K</p>
-        <p class="text-gray-500 text-sm mt-2">Carty's users from all over the globe</p>
-      </div>
-      <div class="text-center md:text-left">
-        <p class="text-5xl font-black text-gray-200">489M</p>
-        <p class="text-gray-500 text-sm mt-2">Carty's revenue in 2022 in the first quarter</p>
-      </div>
-      <div class="text-center md:text-left">
-        <p class="text-5xl font-black text-gray-200">267%</p>
-        <p class="text-gray-500 text-sm mt-2">Carty's investment growth in 2022</p>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA BANNER -->
-  <section class="bg-black mx-6 md:mx-16 my-16 rounded-3xl px-8 md:px-16 py-16 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
-    <div class="relative z-10">
-      <h2 class="text-3xl md:text-4xl font-black text-white leading-tight max-w-sm">
-        Meet your banking future starting from now with Carty
-      </h2>
-      <a href="#" class="mt-8 inline-block bg-yellow-400 text-black font-bold px-6 py-3 rounded-full hover:bg-yellow-300 transition text-sm">Try Carty Now</a>
-    </div>
-    <!-- Hand + card illustration -->
-    <div class="relative z-10 flex items-center justify-center">
-      <div class="relative">
-        <!-- Card floating -->
-        <div class="w-48 h-28 rounded-2xl shadow-2xl rotate-[-10deg] absolute -top-8 right-0"
-             style="background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899);">
-          <div class="p-4">
-            <p class="text-white/70 text-xs font-bold">carty</p>
-          </div>
-          <div class="absolute right-3 bottom-3 flex">
-            <div class="w-5 h-5 rounded-full bg-red-500/80"></div>
-            <div class="w-5 h-5 rounded-full bg-yellow-400/80 -ml-1.5"></div>
-          </div>
+<!-- PULL QUOTE -->
+<section class="pull-quote-section">
+  <div class="pull-quote-marker reveal">
+    <div class="square-marker"></div>
+    <p>James Holt approaches the design of thinking — seeing design and clarity as deeply important for everyone.</p>
+    <div class="square-marker"></div>
+    <p>Early readers confirm in their ideas that James has clarity and vision to make only creative work.</p>
+  </div>
+  <div class="pull-quote-main reveal">
+    <blockquote>
+      "see design as a process of reduction—removing noise until only meaning remains."
+    </blockquote>
+    <div class="pull-quote-sub">
+      <div class="pull-quote-sub-text">
+        Design is not about expression — it is about making ideas understood.
+      </div>
+      <div class="pull-quote-stats">
+        <div class="pull-stat">
+          <div class="pull-stat-num">50+</div>
+          <div class="pull-stat-label">Global Projects</div>
         </div>
-        <!-- Stars -->
-        <div class="text-yellow-400 text-2xl absolute -top-12 left-0">✦</div>
-        <div class="text-yellow-400 text-sm absolute top-0 right-16">✦</div>
-        <!-- Hand placeholder -->
-        <div class="w-48 h-48 bg-white/10 rounded-full flex items-center justify-center mt-8">
-          <div class="w-24 h-32 bg-white/20 rounded-t-full rounded-b-lg"></div>
+        <div class="pull-stat">
+          <div class="pull-stat-num">10+</div>
+          <div class="pull-stat-label">Industries Shaped</div>
         </div>
       </div>
     </div>
-    <!-- BG decoration -->
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute w-96 h-96 rounded-full bg-purple-500 -top-20 -right-20 blur-3xl"></div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PARTNERS -->
-  <section id="partners" class="bg-white px-6 md:px-16 py-24">
-    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Partners</p>
-    <div class="flex flex-col md:flex-row gap-12 items-start">
-      <div class="flex-1 max-w-xs">
-        <h2 class="text-4xl font-black text-gray-900 leading-tight">Meet most carty trusted partners</h2>
+<!-- TESTIMONIALS -->
+<section class="testimonials reveal">
+  <h2 class="testimonials-header">What Early Readers Are Saying</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div>
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">A must-read for every designer and art director looking to deepen their creative process and impact.</p>
       </div>
-      <div class="flex-1">
-        <p class="text-gray-500 text-sm leading-relaxed mb-12">
-          Carty adaptable to meet specific process requirements of global companies. Carty supports numerous local bank channel.
-        </p>
-        <div class="grid grid-cols-3 gap-6">
-          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
-            <span class="font-black text-gray-600 text-lg">OVO</span>
-          </div>
-          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
-            <span class="font-semibold text-gray-600 text-sm flex items-center gap-1">🍎 Pay</span>
-          </div>
-          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
-            <span class="font-black text-blue-700 text-xl italic">VISA</span>
-          </div>
-          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
-            <span class="font-bold text-green-600 text-sm">wise</span>
-          </div>
-          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
-            <span class="font-semibold text-gray-600 text-xs">◎Payoneer</span>
-          </div>
-          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
-            <span class="font-bold text-gray-600 text-sm">G Pay</span>
-          </div>
-          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
-            <span class="font-bold text-indigo-600 text-sm">stripe</span>
-          </div>
-          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
-            <span class="font-black text-gray-500 text-xs tracking-widest">NETELLER</span>
-          </div>
-          <div class="flex items-center justify-center py-6 px-4 rounded-2xl border border-gray-100 hover:border-gray-200 transition">
-            <span class="font-bold text-red-500 text-sm">Alipay</span>
-          </div>
-        </div>
+      <div class="testimonial-meta">
+        <div class="testimonial-name">Sarah McInley</div>
+        <div class="testimonial-role">Creative Director at Google</div>
+        <div class="testimonial-num">1/3</div>
       </div>
     </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="tips" class="bg-gray-50 px-6 md:px-16 py-24">
-    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Strategy</p>
-    <div class="flex flex-col md:flex-row gap-16 items-center">
-      <div class="flex-1 max-w-xs">
-        <h2 class="text-4xl font-black text-gray-900 leading-tight">Let's learn how carty work</h2>
+    <div class="testimonial-card">
+      <div>
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">Clarity, taste, and precision come together to form a refined and highly considered body of work.</p>
       </div>
-      <div class="flex-1">
-        <p class="text-gray-500 text-sm leading-relaxed">
-          Your journey is seamless, safe and secure. No need to register or download apps. No need to enter card details.
-        </p>
+      <div class="testimonial-meta">
+        <div class="testimonial-name">Dan Ellis</div>
+        <div class="testimonial-role">Brand Strategist at Studio LKE</div>
+        <div class="testimonial-num">2/3</div>
       </div>
     </div>
-    <!-- Big logo -->
-    <div class="flex items-center justify-center py-24">
-      <h2 class="text-8xl md:text-9xl font-black bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">Carty</h2>
+    <div class="testimonial-card">
+      <div>
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">A rare perspective on creative disciplines, clarity, and the deeper thinking behind impactful visual work.</p>
+      </div>
+      <div class="testimonial-meta">
+        <div class="testimonial-name">Amela Grant</div>
+        <div class="testimonial-role">Brand Strategist at Work Collective</div>
+        <div class="testimonial-num">3/3</div>
+      </div>
     </div>
-    <p class="text-center text-gray-400 text-sm">We are Carty, provide A seamless digital bank.</p>
-  </section>
+  </div>
+</section>
 
-  <!-- BOTTOM CTA -->
-  <section class="bg-black px-6 md:px-16 py-24 text-center">
-    <h2 class="text-4xl md:text-5xl font-black text-white mb-8">Connect your finances<br />with Carty</h2>
-    <a href="#" class="inline-block bg-yellow-400 text-black font-bold px-8 py-4 rounded-full hover:bg-yellow-300 transition text-sm">Join Carty Now</a>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="bg-black border-t border-white/10 px-6 md:px-16 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-8 text-xs text-gray-500">
-      <span>Terms & Agreements</span>
-      <span>Privacy Policy</span>
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-left reveal">
+    <h2>Ready to Create Something <em>Amazing</em> ?</h2>
+    <a href="#" class="preorder-btn">Let's Talk <span class="arrow">→</span></a>
+  </div>
+  <div class="cta-right reveal">
+    <p>Let's collaborate on your next big project. Whether you need creative direction, strategy, or just a fresh perspective — I'm here to push the creative limits.</p>
+    <div class="cta-links">
+      <a href="#">( Home )</a>
+      <a href="#">( LinkedIn )</a>
+      <a href="#">( Instagram )</a>
+      <a href="#">( About )</a>
+      <a href="#">( Twitter )</a>
+      <a href="#">( Twitter )</a>
+      <a href="#">( Approach )</a>
+      <a href="#">( Behance )</a>
+      <a href="#">( Facebook )</a>
+      <a href="#">( All Work )</a>
+      <a href="#">( Instagram )</a>
+      <a href="#">( Pinterest )</a>
+      <a href="#">( Challenge )</a>
+      <a href="#">( Contact )</a>
     </div>
-    <p class="text-white font-bold text-lg">carty<span class="text-yellow-400">.</span></p>
-    <p class="text-xs text-gray-500">©2023 Carty. All Rights Reserved</p>
-  </footer>
+  </div>
+</section>
+
+<!-- NAMEPLATE -->
+<div class="nameplate">
+  <div class="nameplate-name">James Holt</div>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
 </Layout>
